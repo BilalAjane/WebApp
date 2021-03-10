@@ -7,14 +7,23 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
 public class ProductRepository implements ICrudRepository<Product>{
 
-
     @Autowired
     JdbcTemplate template;
+
+    private List<Product> products = new ArrayList<>();
+
+    public ProductRepository(){
+        this.products.add(new Product(1,"Gamer Stol",1200.0));
+        this.products.add(new Product(2,"Gamer Bord",1000.0));
+        this.products.add(new Product(3,"Gamer Mus",900.0));
+        this.products.add(new Product(4,"Gamer Skærm",1399.0));
+    }
 
     @Override
     public List<Product> getAllProducts() {
